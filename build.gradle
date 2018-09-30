@@ -13,7 +13,7 @@ repositories {
 }
 
 war {
-    archiveName 'web.war'
+    archiveName 'ROOT.war'
 }
 
 sourceCompatibility = 1.8
