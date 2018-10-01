@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -15,15 +16,21 @@ public class HelloWorldServlet extends HttpServlet {
      */
     private static final Random RANDOM = new Random();
 
-    /**
-     * click counts
-     */
-    private static final AtomicInteger CLICK = new AtomicInteger();
+    private static final AtomicInteger CLICK = new AtomicInteger(0);
+
+    private static final ClickService SERVICE = new ClickService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.setContentType("text/html");
-        resp.getWriter().println(CLICK.incrementAndGet());
-        resp.getWriter().print(RANDOM.nextInt());
+
+        PrintWriter writer = resp.getWriter();
+
+        writer.print(SERVICE.incrementAndGet());
+        writer.print("<br>");
+        writer.print(CLICK.incrementAndGet());
+        writer.print("<br>");
+        writer.print(RANDOM.nextInt());
+        writer.print("<br>");
     }
 }
