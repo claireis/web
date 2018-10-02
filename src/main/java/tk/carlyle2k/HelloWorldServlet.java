@@ -26,10 +26,8 @@ public class HelloWorldServlet extends HttpServlet {
 
         PrintWriter writer = resp.getWriter();
 
-        writer.print(SERVICE);
         writer.print(SERVICE.incrementAndGet());
         writer.print("<br>");
-        writer.print(CLICK);
         writer.print(CLICK.incrementAndGet());
         writer.print("<br>");
         writer.print(RANDOM.nextInt());
